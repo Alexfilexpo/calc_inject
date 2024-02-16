@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <form method="post">
+        <input name="operand1" placeholder="Operand 1" required value="{{ operand1 if operand1 is not none else 0 }}">
+        <select name="operator">
+            {% for operator in operators %}
+            <option value="{{ operator }}">{{ operator }}</option>
+            {% endfor %}
+        </select>
+        <input name="operand2" placeholder="Operand 2" required value="{{ operand2 if operand2 is not none else 0 }}">
+        =
+        <input id="result" value="{{ result if result is not none else 0 }}">
+        <button type="submit">Calculate</button>
+    </form>
+</body>
+</html>

@@ -18,6 +18,15 @@ calculator = Calculator()
 # calculator.add_operation("**", Exponentiation())
 
 
+def determine_color(result):
+    try:
+        num_result = float(result)
+        color = "green" if num_result % 2 == 0 else "red"
+    except ValueError:
+        color = "black"  # Default color if result is not a number or an error message
+    return color
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     """Handle GET and POST requests for the calculator operation."""
@@ -36,14 +45,16 @@ def index():
 
         result = calculator.perform_operation(operator, operand1, operand2)
 
+        color = determine_color(result)
+
         if isinstance(result, float):
             result = f"{result:.4f}"
 
         return render_template('index.html', operators=list(calculator.operations.keys()),
-                               operand1=operand1, operand2=operand2, result=result)
+                               operand1=operand1, operand2=operand2, result=result, color=color)
     else:
         return render_template('index.html', operators=list(calculator.operations.keys()),
-                               operand1=None, operand2=None, result=None)
+                               operand1=None, operand2=None, result=None, color="black")
 
 
 if __name__ == '__main__':

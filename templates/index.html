@@ -16,7 +16,7 @@
         </select>
         <input name="operand2" placeholder="Operand 2" required value="{{ operand2 if operand2 is not none else 0 }}">
         =
-        <input id="result" value="{{ result if result is not none else 0 }}">
+        <input id="result" value="{{ result if result is not none else 0 }}" style="color: {{ color }}">
         <button type="submit">Calculate</button>
     </form>
 </body>
